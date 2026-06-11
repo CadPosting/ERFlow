@@ -1,0 +1,49 @@
+/* Printable report view for the Analytics page. */
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  .navbar,
+  .footer,
+  .blob,
+  .analytics-tools {
+    display: none !important;
+  }
+
+  .analytics {
+    padding: 0;
+  }
+
+  .glass-card,
+  .stat-card,
+  .chart-card {
+    background: #fff;
+    border: 1px solid #ccc;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  h1, h2, h3,
+  .stat-value,
+  .stat-label,
+  .dashboard-venue,
+  .bar-chart-row,
+  .bar-chart-row-value {
+    color: #000 !important;
+  }
+
+  .bar-chart-track {
+    background: #eee;
+  }
+
+  .bar-chart-label,
+  .bar-chart-value {
+    fill: #000;
+  }
+
+  .chart-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

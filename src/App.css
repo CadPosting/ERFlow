@@ -2,6 +2,12 @@
   min-height: 100vh;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-container > main {
+  flex: 1;
 }
 
 /* Background Blobs */
@@ -64,6 +70,8 @@
   font-size: 1.5rem;
   font-weight: 800;
   font-family: 'Outfit', sans-serif;
+  color: var(--text);
+  text-decoration: none;
 }
 
 .logo-icon {
@@ -83,8 +91,13 @@
   transition: var(--transition);
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a.active {
   color: var(--text);
+}
+
+.nav-links a.btn-primary {
+  color: white;
 }
 
 /* Hero Section */
@@ -125,71 +138,97 @@
   background: rgba(99, 102, 241, 0.1);
 }
 
-/* Hero Visual Card */
-.main-visual {
-  height: 350px;
+/* Hero ticket preview */
+.ticket-preview {
   width: 100%;
   overflow: hidden;
 }
 
-.card-header {
-  padding: 1rem;
+.ticket-preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
   background: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.ticket-preview-id {
+  font-family: 'Outfit', monospace;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.ticket-preview-badge {
+  background: linear-gradient(135deg, #ef4444, #f97316);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+}
+
+.ticket-preview-body {
+  padding: 1.5rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.ticket-preview-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.ticket-preview-meta {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.ticket-preview-route {
+  color: var(--text-muted);
+}
+
+.ticket-preview-route strong {
+  color: var(--text);
+}
+
+/* Venue switcher */
+.venue-switcher {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 1rem 0;
 }
 
-.dots {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.dots span {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--surface-light);
-}
-
-.url-bar {
-  background: var(--surface);
-  padding: 0.25rem 1rem;
-  border-radius: 1rem;
-  font-size: 0.75rem;
+.venue-switcher-label {
   color: var(--text-muted);
-  flex: 1;
 }
 
-.card-body {
-  padding: 2rem;
+.venue-chip {
+  padding: 0.6rem 1.25rem;
+  border-radius: 2rem;
+  border: 2px solid var(--glass-border);
+  background: var(--glass);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: var(--transition);
 }
 
-.skeleton-line {
-  height: 10px;
-  background: var(--surface-light);
-  border-radius: 5px;
-  margin-bottom: 1rem;
+.venue-chip:hover,
+.venue-chip:focus-visible {
+  border-color: var(--primary);
 }
 
-.skeleton-line.long { width: 80%; }
-.skeleton-line.medium { width: 60%; }
-.skeleton-line.short { width: 40%; }
-
-.skeleton-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin: 2rem 0;
+.venue-chip.active {
+  border-color: var(--primary);
+  background: rgba(99, 102, 241, 0.25);
 }
 
-.skeleton-box {
-  height: 80px;
-  background: var(--surface-light);
-  border-radius: 0.5rem;
-}
-
-/* Features Grid */
+/* Features / mode-entry grid */
 .features-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -200,6 +239,12 @@
 .feature-card {
   padding: 2.5rem;
   text-align: center;
+}
+
+.mode-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
 }
 
 .feature-icon {
@@ -217,7 +262,7 @@
 
 /* Footer */
 .footer {
-  padding: 4rem 0;
+  padding: 2.5rem 0;
   text-align: center;
   border-top: 1px solid var(--glass-border);
   color: var(--text-muted);
@@ -229,19 +274,19 @@
     grid-template-columns: 1fr;
     text-align: center;
   }
-  
+
   .hero-subtitle {
     margin: 0 auto 2.5rem;
   }
-  
+
   .hero-actions {
     justify-content: center;
   }
-  
+
   .features-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .hero-title {
     font-size: 3rem;
   }

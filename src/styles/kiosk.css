@@ -1,0 +1,317 @@
+/* Kiosk mode: full-screen, touch-first, accessible. Large-text and
+   high-contrast variants are toggled via modifier classes on .kiosk. */
+
+.kiosk {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--background);
+  font-size: 1.125rem;
+}
+
+.kiosk-large-text {
+  font-size: 1.45rem;
+}
+
+/* High contrast: pure black/white/yellow, no glass effects. */
+.kiosk-high-contrast {
+  --background: #000;
+  --surface: #000;
+  --glass: #000;
+  --glass-border: #fff;
+  --text: #fff;
+  --text-muted: #fff;
+  --primary: #ffd400;
+  background: #000;
+  color: #fff;
+}
+
+.kiosk-high-contrast .big-button,
+.kiosk-high-contrast .kiosk-textarea,
+.kiosk-high-contrast .kiosk-input {
+  background: #000;
+  border: 3px solid #fff;
+  color: #fff;
+}
+
+.kiosk-high-contrast .btn-primary {
+  background: #ffd400;
+  color: #000;
+}
+
+.kiosk-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.kiosk-venue {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 1.25em;
+}
+
+.kiosk-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.kiosk-step {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.kiosk-title {
+  font-size: 2.2em;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.kiosk-title-secondary {
+  font-size: 1.3em;
+  margin-top: 0.5rem;
+}
+
+.kiosk-subtitle {
+  font-size: 1.2em;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.kiosk-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.kiosk-options-compact {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+/* Touch target primitive: WCAG-generous, icon + label. */
+.big-button {
+  min-height: 88px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: 1rem;
+  border: 2px solid var(--glass-border);
+  background: var(--glass);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 1em;
+  cursor: pointer;
+  text-align: start;
+  transition: var(--transition);
+  border-inline-start: 6px solid var(--big-button-accent, var(--glass-border));
+}
+
+.big-button:hover,
+.big-button:focus-visible {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.big-button:focus-visible {
+  outline: 4px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.big-button.selected {
+  border-color: var(--primary);
+  background: rgba(99, 102, 241, 0.25);
+}
+
+.big-button-icon {
+  font-size: 2em;
+}
+
+.big-button-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.big-button-label {
+  font-weight: 700;
+  font-size: 1.15em;
+}
+
+.big-button-sublabel {
+  color: var(--text-muted);
+}
+
+.kiosk-textarea,
+.kiosk-input {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  border: 2px solid var(--glass-border);
+  background: var(--surface);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 1em;
+}
+
+.kiosk-textarea:focus-visible,
+.kiosk-input:focus-visible {
+  outline: 4px solid var(--primary);
+  outline-offset: 1px;
+}
+
+.kiosk-next {
+  min-height: 72px;
+  font-size: 1.2em;
+  margin-top: 0.5rem;
+}
+
+.kiosk-next:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Confirm screen */
+.kiosk-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
+}
+
+.kiosk-summary dt {
+  font-size: 0.85em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.kiosk-summary dd {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.kiosk-route-preview {
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.kiosk-escalation-note {
+  text-align: center;
+  font-size: 1.1em;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.5);
+}
+
+/* Done screen */
+.kiosk-done {
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.kiosk-done-icon {
+  font-size: 4em;
+}
+
+.kiosk-ticket-id {
+  font-family: 'Outfit', monospace;
+  font-size: 3em;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 1rem 2rem;
+  border: 2px dashed var(--glass-border);
+  border-radius: 1rem;
+}
+
+/* Progress dots */
+.wizard-progress {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.wizard-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--surface-light);
+}
+
+.wizard-dot.done {
+  background: var(--primary);
+}
+
+/* Accessibility bar */
+.a11y-bar {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.a11y-toggle {
+  min-height: 48px;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  border: 2px solid var(--glass-border);
+  background: transparent;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+.a11y-toggle.active {
+  border-color: var(--primary);
+  background: rgba(99, 102, 241, 0.25);
+}
+
+.a11y-toggle:focus-visible {
+  outline: 4px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Footer nav */
+.kiosk-footer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  border-top: 1px solid var(--glass-border);
+}
+
+.kiosk-nav-btn {
+  min-height: 64px;
+  padding: 0.75rem 1.75rem;
+  border-radius: 0.75rem;
+  border: 2px solid var(--glass-border);
+  background: var(--glass);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 1.05em;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.kiosk-nav-btn:focus-visible {
+  outline: 4px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.kiosk-exit {
+  margin-inline-start: auto;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+}
